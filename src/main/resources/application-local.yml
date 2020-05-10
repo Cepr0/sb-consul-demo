@@ -1,0 +1,5 @@
+spring:
+  cloud:
+    consul:
+      discovery:
+        instance-id: "${spring.application.name}-${server.port}"

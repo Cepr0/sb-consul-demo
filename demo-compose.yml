@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  demo-service:
+    build: .
+
+    ports:
+    - "8080-8099:8080"
+    depends_on:
+#     run with 'docker-compose -f demo-compose.yml -f docker-compose.yml up -d'
+      - consul-server-1
+      - consul-server-2
+      - consul-server-3

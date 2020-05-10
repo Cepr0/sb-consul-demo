@@ -1,0 +1,15 @@
+api:
+  insecure: true
+
+providers:
+  consulCatalog:
+    exposedByDefault: false
+    refreshInterval: 1s
+    endpoint:
+      address: consul-server-1:8500
+
+entryPoints:
+  web:
+    address: ":80"
+    forwardedHeaders:
+      insecure: true
