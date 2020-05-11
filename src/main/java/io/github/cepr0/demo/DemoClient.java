@@ -11,14 +11,12 @@ import java.util.Map;
 
 @Slf4j
 @Component
-public class DemoClient {
-    private final String serviceAddress;
+public class DemoClient extends ServiceAddressable {
+
     private final RestTemplate restTemplate;
 
     public DemoClient(Environment env, RestTemplate restTemplate) {
-        String serviceName = env.getProperty("spring.application.name");
-        String servicePort = env.getProperty("server.port");
-        this.serviceAddress = String.format("%s:%s", serviceName, servicePort);
+        super(env);
         this.restTemplate = restTemplate;
     }
 

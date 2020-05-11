@@ -3,7 +3,7 @@ logging:
     io.github.cepr0: debug
     org:
       springframework:
-        web: debug
+        web: warn
 spring:
   cloud:
     consul:

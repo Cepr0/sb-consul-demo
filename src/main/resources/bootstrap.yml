@@ -1,5 +1,5 @@
 spring:
   cloud:
     consul:
-      host: consul-server-1
+      host: localhost
       port: 8500

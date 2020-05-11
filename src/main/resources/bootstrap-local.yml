@@ -2,4 +2,4 @@ spring:
   cloud:
     consul:
       host: localhost
-      port: 8500
+      port: 8504

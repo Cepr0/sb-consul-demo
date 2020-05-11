@@ -23,15 +23,12 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
 @Slf4j
 @RestController
 @RequestMapping("/demo")
-public class DemoController {
-    private final String serviceAddress;
+public class DemoController extends ServiceAddressable {
 
     @Value("${demo.route}") String route;
 
-    public DemoController(Environment env, AppProps props) {
-        String serviceName = env.getProperty("spring.application.name");
-        String servicePort = env.getProperty("server.port");
-        this.serviceAddress = String.format("%s:%s", serviceName, servicePort);
+    public DemoController(Environment env) {
+        super(env);
     }
 
     @PostConstruct

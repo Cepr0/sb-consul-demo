@@ -2,7 +2,7 @@ version: "3"
 
 services:
   consul-server-1:
-    image: consul:1.7
+    image: consul:latest
     hostname: consul-server-1
     ports:
       - "8400:8400"
@@ -12,7 +12,7 @@ services:
     command: "agent -server -bootstrap-expect 2 -ui -client 0.0.0.0"
 
   consul-server-2: &consul-server
-    image: consul:1.7
+    image: consul:latest
     hostname: consul-server-2
     command: "agent -server -retry-join consul-server-1 -ui -client 0.0.0.0"
     ports:
@@ -26,8 +26,17 @@ services:
     ports:
       - "8502:8500"
 
+  consul-client:
+    image: consul:latest
+    hostname: consul-client
+    ports:
+      - "8504:8500"
+    command: "agent -client 0.0.0.0 -retry-join consul-server-1 -retry-join consul-server-2 -retry-join consul-server-3"
+    depends_on:
+      - consul-server-1
+
   traefik:
-    image: traefik:v2.2
+    image: traefik:latest
     command: |
       -c traefik.yml
       --api.insecure=true
@@ -36,3 +45,5 @@ services:
       - "8080:8080" # The Web UI (enabled by --api)
     volumes:
       - ./traefik.yml:/traefik.yml
+    depends_on:
+      - consul-client

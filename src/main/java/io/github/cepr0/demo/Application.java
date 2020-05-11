@@ -23,15 +23,12 @@ import java.nio.charset.Charset;
 @EnableScheduling
 @EnableConfigurationProperties(AppProps.class)
 @SpringBootApplication
-public class Application {
+public class Application extends ServiceAddressable {
 
-    private final String serviceAddress;
     private final String opponentService;
 
     public Application(AppProps props, Environment env) {
-        String serviceName = env.getProperty("spring.application.name");
-        String servicePort = env.getProperty("server.port");
-        this.serviceAddress = String.format("%s:%s", serviceName, servicePort);
+        super(env);
         this.opponentService = props.getOpponentService();
     }
 

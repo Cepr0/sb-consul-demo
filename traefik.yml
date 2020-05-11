@@ -6,7 +6,7 @@ providers:
     exposedByDefault: false
     refreshInterval: 1s
     endpoint:
-      address: consul-server-1:8500
+      address: consul-client:8500
 
 entryPoints:
   web:

@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  first-service:
+    build: .
+    environment:
+      - demo_opponent_service=second-service
+      - demo_route=one
+      - spring_application_name=first-service
+  second-service:
+    build: .
+    environment:
+      - demo_opponent_service=first-service
+      - demo_route=two
+      - spring_application_name=second-service
